@@ -33,6 +33,20 @@ export default function AdminAprobaciones() {
         setTimeout(() => setMensaje(""), 3000);
     };
 
+    const rechazarEmpresa = async (id) => {
+        await api.delete(`/admin/empresas/${id}`);
+        setMensaje("🗑️ Empresa rechazada y eliminada");
+        cargarDatos();
+        setTimeout(() => setMensaje(""), 3000);
+    };
+
+    const rechazarOferente = async (id) => {
+        await api.delete(`/admin/oferentes/${id}`);
+        setMensaje("🗑️ Oferente rechazado y eliminado");
+        cargarDatos();
+        setTimeout(() => setMensaje(""), 3000);
+    };
+
     return (
         <Layout>
             <div className="bg-white rounded-lg shadow-md p-8 mb-8">
@@ -70,12 +84,20 @@ export default function AdminAprobaciones() {
                                     <p className="text-sm text-gray-500">{e.correo}</p>
                                     <p className="text-xs text-gray-400">{e.localizacion}</p>
                                 </div>
-                                <button
-                                    onClick={() => aprobarEmpresa(e.id)}
-                                    className="bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded-lg text-sm font-semibold transition"
-                                >
-                                    ✔ Aprobar
-                                </button>
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={() => aprobarEmpresa(e.id)}
+                                        className="bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 rounded-lg text-sm font-semibold transition"
+                                    >
+                                        ✔ Aprobar
+                                    </button>
+                                    <button
+                                        onClick={() => rechazarEmpresa(e.id)}
+                                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-1.5 rounded-lg text-sm font-semibold transition"
+                                    >
+                                        ✖ Rechazar
+                                    </button>
+                                </div>
                             </div>
                         ))
                     )}
@@ -103,12 +125,20 @@ export default function AdminAprobaciones() {
                                     <p className="text-sm text-gray-500">{o.correo}</p>
                                     <p className="text-xs text-gray-400">{o.residencia}</p>
                                 </div>
-                                <button
-                                    onClick={() => aprobarOferente(o.id)}
-                                    className="bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded-lg text-sm font-semibold transition"
-                                >
-                                    ✔ Aprobar
-                                </button>
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={() => aprobarOferente(o.id)}
+                                        className="bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 rounded-lg text-sm font-semibold transition"
+                                    >
+                                        ✔ Aprobar
+                                    </button>
+                                    <button
+                                        onClick={() => rechazarOferente(o.id)}
+                                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-1.5 rounded-lg text-sm font-semibold transition"
+                                    >
+                                        ✖ Rechazar
+                                    </button>
+                                </div>
                             </div>
                         ))
                     )}

@@ -21,6 +21,8 @@ import OferenteHabilidades from "./pages/oferente/OferenteHabilidades";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminAprobaciones from "./pages/admin/AdminAprobaciones";
 import AdminCaracteristicas from "./pages/admin/AdminCaracteristicas";
+import AdminEmpresas from "./pages/admin/AdminEmpresas";
+import AdminOferentes from "./pages/admin/AdminOferentes";
 
 function RutaProtegida({ children, rol }) {
   const { auth } = useAuth();
@@ -68,6 +70,12 @@ export default function App() {
         <Route path="/admin/caracteristicas" element={
           <RutaProtegida rol="ADMIN"><AdminCaracteristicas /></RutaProtegida>
         } />
+          <Route path="/admin/empresas" element={
+              <RutaProtegida rol="ADMIN"><AdminEmpresas /></RutaProtegida>
+          } />
+          <Route path="/admin/oferentes" element={
+              <RutaProtegida rol="ADMIN"><AdminOferentes /></RutaProtegida>
+          } />
 
         {/* Cualquier otra ruta */}
         <Route path="*" element={<Navigate to="/" />} />

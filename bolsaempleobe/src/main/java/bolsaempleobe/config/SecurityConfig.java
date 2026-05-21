@@ -43,6 +43,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/caracteristicas").permitAll()
                         // Rutas por rol
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/empresas/**").hasRole("EMPRESA")
                         .requestMatchers("/api/oferentes/**").hasRole("OFERENTE")
                         .requestMatchers(HttpMethod.POST, "/api/puestos").hasRole("EMPRESA")

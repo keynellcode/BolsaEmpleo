@@ -20,8 +20,16 @@ public class AdminService {
         return empresaRepository.findByAprobadaFalse();
     }
 
+    public long getTotalEmpresas() {
+        return empresaRepository.count();
+    }
+
     public List<Oferente> getOferentesPendientes() {
         return oferenteRepository.findByAprobadoFalse();
+    }
+
+    public long getTotalOferentes() {
+        return oferenteRepository.count();
     }
 
     public Empresa aprobarEmpresa(Long id) {

@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface OferenteRepository extends JpaRepository<Oferente, Long> {
     Optional<Oferente> findByCorreo(String correo);
     List<Oferente> findByAprobadoFalse();
+    long count();
 }

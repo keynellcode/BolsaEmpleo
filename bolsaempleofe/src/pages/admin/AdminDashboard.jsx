@@ -15,12 +15,14 @@ export default function AdminDashboard() {
         Promise.all([
             api.get("/admin/empresas/pendientes"),
             api.get("/admin/oferentes/pendientes"),
-        ]).then(([empresasRes, oferentesRes]) => {
+            api.get("/admin/oferentes/total"),
+            api.get("/admin/empresas/total"),
+        ]).then(([empresasRes, oferentesRes, oferentesTotal, empresasTotal]) => {
             setStats({
                 empresasPendientes: empresasRes.data.length,
                 oferentesPendientes: oferentesRes.data.length,
-                totalEmpresas: empresasRes.data.length, // temporal
-                totalOferentes: oferentesRes.data.length,
+                totalEmpresas: empresasTotal.data,
+                totalOferentes: oferentesTotal.data,
             });
         }).catch(err => console.error(err));
     }, []);
@@ -59,9 +61,14 @@ export default function AdminDashboard() {
                           className="bg-blue-500 text-white p-4 rounded-lg shadow hover:bg-blue-600 transition text-center font-semibold">
                         🏷️ Gestionar características
                     </Link>
-                    <div className="bg-gray-100 text-gray-500 p-4 rounded-lg shadow text-center font-semibold">
-                        📊 Más reportes próximamente
-                    </div>
+                    <Link to="/admin/empresas"
+                          className="bg-blue-500 text-white p-4 rounded-lg shadow hover:bg-blue-600 transition text-center font-semibold">
+                        🏢 Ver empresas
+                    </Link>
+                    <Link to="/admin/oferentes"
+                          className="bg-blue-500 text-white p-4 rounded-lg shadow hover:bg-blue-600 transition text-center font-semibold">
+                        👤 Ver oferentes
+                    </Link>
                 </div>
             </div>
         </Layout>

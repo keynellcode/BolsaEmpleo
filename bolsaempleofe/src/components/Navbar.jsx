@@ -98,6 +98,8 @@ export default function Navbar() {
                                 <>
                                     <Link to="/admin/dashboard" className="hover:underline">Dashboard</Link>
                                     <Link to="/admin/aprobaciones" className="hover:underline">Aprobaciones</Link>
+                                    <Link to="/admin/empresas" className="hover:underline">Empresas</Link>
+                                    <Link to="/admin/oferentes" className="hover:underline">Oferentes</Link>
                                     <Link to="/admin/caracteristicas" className="hover:underline">Características</Link>
                                     <span className="text-white/70">|</span>
                                     <button onClick={handleLogout} className="hover:underline">Salir</button>
