@@ -57,4 +57,13 @@ public class PuestoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("/{id}/candidatos")
+    public ResponseEntity<?> getCandidatos(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(puestoService.getCandidatos(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

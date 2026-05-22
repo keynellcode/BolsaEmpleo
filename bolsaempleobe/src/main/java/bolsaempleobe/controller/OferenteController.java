@@ -60,4 +60,13 @@ public class OferenteController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("/{id}/habilidades")
+    public ResponseEntity<?> getHabilidadesPorId(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(oferenteService.getHabilidades(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

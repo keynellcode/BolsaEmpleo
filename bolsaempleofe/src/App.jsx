@@ -23,6 +23,9 @@ import AdminAprobaciones from "./pages/admin/AdminAprobaciones";
 import AdminCaracteristicas from "./pages/admin/AdminCaracteristicas";
 import AdminEmpresas from "./pages/admin/AdminEmpresas";
 import AdminOferentes from "./pages/admin/AdminOferentes";
+import EmpresaCandidatos from "./pages/empresa/EmpresaCandidatos";
+import OferenteCurriculum from "./pages/oferente/OferenteCurriculum";
+
 
 function RutaProtegida({ children, rol }) {
   const { auth } = useAuth();
@@ -51,6 +54,9 @@ export default function App() {
         <Route path="/empresa/puestos/nuevo" element={
           <RutaProtegida rol="EMPRESA"><EmpresaCrearPuesto /></RutaProtegida>
         } />
+          <Route path="/empresa/candidatos/:puestoId" element={
+          <RutaProtegida rol="EMPRESA"><EmpresaCandidatos /></RutaProtegida>
+        } />
 
         {/* Oferente */}
         <Route path="/oferente/dashboard" element={
@@ -75,6 +81,10 @@ export default function App() {
           } />
           <Route path="/admin/oferentes" element={
               <RutaProtegida rol="ADMIN"><AdminOferentes /></RutaProtegida>
+          } />
+
+          <Route path="/oferente/curriculum" element={
+              <RutaProtegida rol="OFERENTE"><OferenteCurriculum /></RutaProtegida>
           } />
 
         {/* Cualquier otra ruta */}

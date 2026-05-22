@@ -19,6 +19,7 @@ public class PuestoService {
     private final PuestoCaracteristicaRepository puestoCaracteristicaRepository;
     private final EmpresaRepository empresaRepository;
     private final CaracteristicaRepository caracteristicaRepository;
+    private final OferenteRepository oferenteRepository;
 
     public Puesto crear(PuestoDTO dto) {
         Empresa empresa = empresaRepository.findById(dto.getEmpresaId())
@@ -67,5 +68,21 @@ public class PuestoService {
                 .orElseThrow(() -> new RuntimeException("Puesto no encontrado"));
         p.setActivo(false);
         return puestoRepository.save(p);
+    }
+
+    public List<Oferente> getCandidatos(Long puestoId) {
+        Puesto puesto = puestoRepository.findById(puestoId)
+                .orElseThrow(() -> new RuntimeException("Puesto no encontrado"));
+
+        List<Long> caracteristicaIds = puesto.getRequisitos().stream()
+                .map(r -> r.getCaracteristica().getId())
+                .toList();
+
+        if (caracteristicaIds.isEmpty()) return List.of();
+
+        return oferenteRepository.findAll().stream()
+                .filter(o -> o.isAprobado() && o.getHabilidades().stream()
+                        .anyMatch(h -> caracteristicaIds.contains(h.getCaracteristica().getId())))
+                .toList();
     }
 }
