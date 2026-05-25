@@ -70,6 +70,13 @@ public class PuestoService {
         return puestoRepository.save(p);
     }
 
+    public Puesto activar(Long id) {
+        Puesto p = puestoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Puesto no encontrado"));
+        p.setActivo(true);
+        return puestoRepository.save(p);
+    }
+
     public List<Oferente> getCandidatos(Long puestoId) {
         Puesto puesto = puestoRepository.findById(puestoId)
                 .orElseThrow(() -> new RuntimeException("Puesto no encontrado"));

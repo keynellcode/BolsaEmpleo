@@ -33,24 +33,22 @@ public class AuthService {
         // Intentar como Empresa
         var empresa = empresaRepository.findByCorreo(request.getUsuario());
         if (empresa.isPresent()) {
-            if (!empresa.get().isAprobada())
-                throw new RuntimeException("Empresa no aprobada");
+            if (!passwordEncoder.matches(request.getClave(), empresa.get().getClave()))
+                throw new RuntimeException("Credenciales inválidas");
             String token = jwtUtil.generateToken(
                     empresa.get().getCorreo(), "EMPRESA", empresa.get().getId());
-            return new LoginResponse(token, "EMPRESA",
-                    empresa.get().getId(), empresa.get().getNombre());
+            return new LoginResponse(token, "EMPRESA", empresa.get().getId(), "Empresa");
         }
-
         // Intentar como Oferente
         var oferente = oferenteRepository.findByCorreo(request.getUsuario());
         if (oferente.isPresent()) {
-            if (!oferente.get().isAprobado())
-                throw new RuntimeException("Oferente no aprobado");
+            if (!passwordEncoder.matches(request.getClave(), oferente.get().getClave()))
+                throw new RuntimeException("Credenciales inválidas");
             String token = jwtUtil.generateToken(
                     oferente.get().getCorreo(), "OFERENTE", oferente.get().getId());
-            return new LoginResponse(token, "OFERENTE",
-                    oferente.get().getId(), oferente.get().getNombre());
+            return new LoginResponse(token, "OFERENTE", oferente.get().getId(), "Oferente");
         }
+
 
         throw new RuntimeException("Usuario no encontrado");
     }

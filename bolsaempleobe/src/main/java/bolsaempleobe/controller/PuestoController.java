@@ -58,6 +58,15 @@ public class PuestoController {
         }
     }
 
+    @PutMapping("/{id}/activar")
+    public ResponseEntity<?> activar(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(puestoService.activar(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @GetMapping("/{id}/candidatos")
     public ResponseEntity<?> getCandidatos(@PathVariable Long id) {
         try {
