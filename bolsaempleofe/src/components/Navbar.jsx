@@ -79,7 +79,6 @@ export default function Navbar() {
                                 <>
                                     <span className="text-white/80">{auth.nombre}</span>
                                     <Link to="/empresa/dashboard" className="hover:underline">Dashboard</Link>
-                                    <Link to="/empresa/puestos" className="hover:underline">Mis Puestos</Link>
                                     <span className="text-white/70">|</span>
                                     <button onClick={handleLogout} className="hover:underline">Salir</button>
                                 </>
@@ -97,10 +96,6 @@ export default function Navbar() {
                             {auth?.rol === "ADMIN" && (
                                 <>
                                     <Link to="/admin/dashboard" className="hover:underline">Dashboard</Link>
-                                    <Link to="/admin/aprobaciones" className="hover:underline">Aprobaciones</Link>
-                                    <Link to="/admin/empresas" className="hover:underline">Empresas</Link>
-                                    <Link to="/admin/oferentes" className="hover:underline">Oferentes</Link>
-                                    <Link to="/admin/caracteristicas" className="hover:underline">Características</Link>
                                     <span className="text-white/70">|</span>
                                     <button onClick={handleLogout} className="hover:underline">Salir</button>
                                 </>
