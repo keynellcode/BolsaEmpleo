@@ -26,9 +26,8 @@ Aplicación web full-stack para la gestión y visualización de detalles de pues
 
 ## Instalación
 
-### Backend
+### Frontend
 
 ```bash
-cd backend
-mvn clean install
-mvn spring-boot:run
+npm i
+npm run dev
