@@ -26,8 +26,28 @@ Aplicación web full-stack para la gestión y visualización de detalles de pues
 
 ## Instalación
 
-### Frontend
+### ⚙️ Backend (Spring Boot)
+
+1. Abrí MySQL Workbench
+2. Ejecutá el script:
+```bash
+bolsa_empleo.sql
+```
+
+3. Abrí bolsaempleobe en IntelliJ
+4. Editá src/main/resources/application.properties:
+```bash
+spring.datasource.password=tu_contraseña
+```
+
+5. Ejecutá BolsaEmpleoApplication.java
+
+### 🖥️ Frontend (React)
+
+1. Abrí terminal en bolsaempleofe
+2. Ejecutá:
 
 ```bash
 npm i
 npm run dev
+```
